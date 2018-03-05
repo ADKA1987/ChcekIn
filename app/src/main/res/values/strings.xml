@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">CheckIn</string>
+    <string name="explanation">Test</string>
+
 </resources>
