@@ -16,6 +16,8 @@ import android.util.Log;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.firebase.auth.FirebaseAuth;
+
 import java.io.UnsupportedEncodingException;
 import java.util.Arrays;
 
@@ -24,14 +26,20 @@ public class MainActivity extends AppCompatActivity {
     public static final String MIME_TEXT_PLAIN = "text/plain";
     public static final String TAG = "NfcDemo";
 
+    private FirebaseAuth firebaseAuth;
     private TextView mTextView;
     private NfcAdapter mNfcAdapter;
+    private String userID;
+    private String userEmail;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         mTextView = (TextView) findViewById(R.id.textView_explanation);
-
+        //Intent mIntent = getIntent();
+        //firebaseAuth = FirebaseAuth.getInstance();
+        //userID = (String) mIntent.getSerializableExtra("Uid");
+        //userEmail = (String) mIntent.getSerializableExtra("userEmail");
         mNfcAdapter = NfcAdapter.getDefaultAdapter(this);
 
         if (mNfcAdapter == null) {
@@ -141,12 +149,6 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    /**
-     * Background task for reading the data. Do not block the UI thread while reading.
-     *
-     * @author Ralf Wondratschek
-     *
-     */
     private class NdefReaderTask extends AsyncTask<Tag, Void, String> {
 
         @Override
